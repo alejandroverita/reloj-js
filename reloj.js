@@ -13,7 +13,7 @@
 
         //acceder a cada elemento en el index
         var pHoras = document.getElementById("horas"),
-            pAMPH = document.getElementById("ampm"),
+            pAMPM = document.getElementById("ampm"),
             pMinutos = document.getElementById("minutos"),
             pSegundos = document.getElementById("segundos"),
             pDiaSemana = document.getElementById("diaSemana"),
@@ -32,10 +32,50 @@
 
         pMes.textContent=meses[mes];
 
+        pYear.textContent = year;
+
+
+        //------------------------HORAS
+
+        if (horas>=12) {
+
+            horas-=12;
+            ampm='PM';
+        }
+        else {
+            ampm = 'AM';
+        }
+
+        if(horas==0){
+
+            horas = 12;
+        }
+
+        pHoras.textContent = horas;
+        pAMPM.textContent = ampm;
+
+        //Agregando un 0 por delante del minutero y secundero
+        if(minutos<10){
+            minutos="0" + minutos
+        }
+
+        if (segundos<10){
+            segundos="0" + segundos
+        }
+
+        pMinutos.textContent = minutos;
+        pSegundos.textContent = segundos;
+
+
+
 
     };
 
         
 
     actualizarHora();
+
+    //intervalo para que se actualie cada segundo
+    var intervalo = setInterval(actualizarHora, 1000);
+
 }())
